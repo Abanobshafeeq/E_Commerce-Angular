@@ -1,1 +1,30 @@
-<p>nav works!</p>
+<mat-toolbar class="custom-navbar">
+  <div class="container d-flex justify-content-between align-items-center h-100">
+
+    <div class="brand-section d-flex align-items-center">
+      <button mat-icon-button class="me-2 d-md-none" aria-label="Menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="brand-text">MyShop.</span>
+    </div>
+
+    <div class="nav-links d-none d-md-flex align-items-center">
+      <a class="nav-item active">Home</a>
+      <a class="nav-item">Products</a>
+      <a class="nav-item">About</a>
+    </div>
+
+    <div class="action-section d-flex align-items-center gap-1">
+      <button mat-icon-button class="custom-icon-btn" aria-label="User Profile">
+        <mat-icon>person_outline</mat-icon>
+      </button>
+      
+      <button mat-icon-button class="custom-icon-btn" aria-label="Shopping Cart">
+        <mat-icon [matBadge]="cartItemCount" matBadgeColor="warn" matBadgeSize="small">
+          shopping_cart
+        </mat-icon>
+      </button>
+    </div>
+
+  </div>
+</mat-toolbar>

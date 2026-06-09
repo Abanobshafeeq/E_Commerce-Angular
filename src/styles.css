@@ -1,4 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================================================
+   1. CSS Variables (Theming)
+   ========================================================================== */
+:root {
+  /* Main Brand Colors - A sleek, modern professional blue */
+  --brand-blue-primary: #0056b3;     /* Primary interactive color */
+  --brand-blue-hover: #004494;       /* Darker shade for hover states */
+  --brand-blue-light: #e6f0fa;       /* Very light shade for backgrounds/cards */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  /* Neutral Colors for Typography and Backgrounds */
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --bg-main: #f8f9fa;                /* Off-white background for the app */
+  --surface-white: #ffffff;          /* Pure white for cards and navbars */
+
+  /* Spacing & Borders */
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* ==========================================================================
+   2. Base Resets & Typography
+   ========================================================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  /* Modern system font stack for a clean, app-like feel */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Make all generic links use your brand blue globally */
+a {
+  color: var(--brand-blue-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--brand-blue-hover);
+}
+
+/* ==========================================================================
+   3. Shared Global Components
+   ========================================================================== */
+
+/* 
+  A custom, shared primary button class. 
+  Instead of rewriting this in every component, just apply class="btn-primary-custom"
+*/
+.btn-primary-custom {
+  background-color: var(--brand-blue-primary);
+  color: var(--surface-white);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary-custom:hover {
+  background-color: var(--brand-blue-hover);
+}
+
+.btn-primary-custom:active {
+  transform: scale(0.98);
+}
+
+/* 
+  Shared Card Style 
+  Apply class="shared-card" to any div to give it a uniform, elevated look
+*/
+.shared-card {
+  background-color: var(--surface-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  border-top: 4px solid var(--brand-blue-primary); /* Subtle blue branding on top */
+}

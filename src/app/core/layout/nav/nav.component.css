@@ -1,0 +1,61 @@
+/* 1. Navbar Container
+  Overrides Material's default styles to create a sleek, sticky, glass-like header 
+*/
+.custom-navbar {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px); /* Creates the modern blurred glass effect behind the nav */
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 64px;
+  padding: 0; /* Let the internal .container handle the padding */
+}
+
+/* 2. Brand Styling */
+.brand-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--brand-blue-primary);
+  letter-spacing: -0.5px;
+  cursor: pointer;
+}
+
+/* 3. Navigation Links Container */
+.nav-links {
+  gap: 8px; /* Tighter grouping for the links */
+}
+
+/* 4. Individual Link Styling */
+.nav-item {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px 16px;
+  border-radius: 20px; /* Pill-shaped hover effect */
+  transition: all 0.25s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-main);
+}
+
+/* Active State (You can bind this conditionally with [class.active] later) */
+.nav-item.active {
+  color: var(--brand-blue-primary);
+  font-weight: 600;
+}
+
+/* 5. Icon Buttons */
+.custom-icon-btn {
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.custom-icon-btn:hover {
+  color: var(--brand-blue-primary);
+}
