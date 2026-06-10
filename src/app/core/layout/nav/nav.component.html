@@ -9,18 +9,21 @@
     </div>
 
     <div class="nav-links d-none d-md-flex align-items-center">
-      <a class="nav-item active">Home</a>
-      <a class="nav-item">Products</a>
-      <a class="nav-item">About</a>
+      <a routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"
+        class="nav-item active">Home</a>
+      <a routerLink="/products" [routerLinkActiveOptions]="{exact: false}" routerLinkActive="active"
+        class="nav-item">Products</a>
+      <a routerLink="/about" [routerLinkActiveOptions]="{exact: false}" routerLinkActive="active"
+        class="nav-item">About</a>
     </div>
 
     <div class="action-section d-flex align-items-center gap-1">
       <button mat-icon-button class="custom-icon-btn" aria-label="User Profile">
         <mat-icon>person_outline</mat-icon>
       </button>
-      
+
       <button mat-icon-button class="custom-icon-btn" aria-label="Shopping Cart">
-        <mat-icon [matBadge]="cartItemCount" matBadgeColor="warn" matBadgeSize="small">
+        <mat-icon [matBadge]="cartItemCount" matBadgeColor="warn" matBadgeSize="small" aria-hidden="false">
           shopping_cart
         </mat-icon>
       </button>

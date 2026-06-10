@@ -3,6 +3,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge'; // Great for a cart item count
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,9 @@ import { MatBadgeModule } from '@angular/material/badge'; // Great for a cart it
     MatToolbarModule, 
     MatButtonModule, 
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule ,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
