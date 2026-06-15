@@ -59,3 +59,13 @@
 .custom-icon-btn:hover {
   color: var(--brand-blue-primary);
 }
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.mat-badge-content {
+  font-weight: bold;
+}
+

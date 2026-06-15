@@ -5,6 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CurrencyPipe } from '@angular/common';
 import { MatIcon } from "@angular/material/icon";
 import { LoaderComponent } from "../../../../core/Shared/components/loader/loader.component";
+import { CartService } from '../../../../core/Shared/services/cart.service';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-list',
@@ -21,6 +23,7 @@ import { LoaderComponent } from "../../../../core/Shared/components/loader/loade
 })
 export class ProductListComponent implements OnInit {
   private productService = inject(ProductService);
+  private cartService = inject(CartService);
   products = this.productService.products;
   categories: string[] = [];
 
@@ -55,5 +58,9 @@ export class ProductListComponent implements OnInit {
   onCategorySelect(category: string, event: Event) {
     event.preventDefault();
     this.selectedCategory.set(category);
+  }
+
+  onAddToCart(product: Product) {
+    this.cartService.addToCart(product);
   }
 }

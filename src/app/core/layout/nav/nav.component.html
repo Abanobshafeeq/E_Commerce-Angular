@@ -22,8 +22,10 @@
         <mat-icon>person_outline</mat-icon>
       </button>
 
+      <!-- <span class="fw-bold text-danger me-2">Test Count: {{ cartService.totalItems() }}</span> -->
+
       <button mat-icon-button class="custom-icon-btn" aria-label="Shopping Cart">
-        <mat-icon [matBadge]="cartItemCount" matBadgeColor="warn" matBadgeSize="small" aria-hidden="false">
+        <mat-icon [matBadge]="cartService.totalItems()" matBadgeColor="warn" matBadgeSize="medium" aria-hidden="false" [matBadgeHidden]="false">
           shopping_cart
         </mat-icon>
       </button>
