@@ -29,16 +29,16 @@
             </div>
 
             <div class="item-actions">
-              <button mat-icon-button class="qty-btn" (click)="onDecreaseQuantity(item.product.id)" [disabled]="item.quantity === 1">
+              <button mat-icon-button class="qty-btn" (click)="onDecreaseQuantity(item.product)" [disabled]="item.quantity === 1">
                 <mat-icon>remove</mat-icon>
               </button>
               <span class="qty-value">{{ item.quantity }}</span>
-              <button mat-icon-button class="qty-btn" (click)="onIncreaseQuantity(item.product.id)">
+              <button mat-icon-button class="qty-btn" (click)="onIncreaseQuantity(item.product)">
                 <mat-icon>add</mat-icon>
               </button>
             </div>
 
-            <button mat-icon-button color="warn" class="remove-btn" (click)="onRemoveItem(item.product.id)">
+            <button mat-icon-button color="warn" class="remove-btn" (click)="onRemoveItem(item.product)">
               <mat-icon>delete_outline</mat-icon>
             </button>
             
