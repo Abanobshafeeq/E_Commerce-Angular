@@ -1,3 +1,7 @@
+.container{
+  min-height: 90.8vh;
+  padding-bottom: 30px;
+}
 .product-card {
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
   background-color: var(--surface-white);

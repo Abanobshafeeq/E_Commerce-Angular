@@ -1,32 +1,41 @@
 <div class="container pt-4">
-  <h2 class="mb-4 fw-bold text-center">Featured Products</h2>
-
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fs-3 fw-bold m-0">Products</h1>
+    
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle text-capitalize" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ selectedCategory() }}
+      </button>
+      <ul class="dropdown-menu shadow-sm border-0">
+        <li>
+          <a class="dropdown-item" href="#" (click)="onCategorySelect('All Categories', $event)">
+            All Categories
+          </a>
+        </li>
+        @for (category of categories; track category) {
+          <li>
+            <a class="dropdown-item text-capitalize" href="#" (click)="onCategorySelect(category, $event)">
+              {{ category }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+  
   <div class="row g-4">
-    @for (product of products(); track product.id) {
+    @for (product of filteredProducts(); track product.id) {
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <mat-card
-          class="product-card h-100 d-flex flex-column justify-content-between border-0 shadow-sm"
-        >
-          <div
-            class="image-container d-flex align-items-center justify-content-center p-3"
-          >
-            <img
-              [src]="product.image"
-              [alt]="product.title"
-              class="product-img"
-            />
+        <mat-card class="product-card h-100 d-flex flex-column justify-content-between border-0 shadow-sm">
+          <div class="image-container d-flex align-items-center justify-content-center p-3">
+            <img [src]="product.image" [alt]="product.title" class="product-img" />
           </div>
 
           <mat-card-content class="pt-2">
-            <h3
-              class="product-title fs-6 fw-semibold text-truncate mb-1"
-              [title]="product.title"
-            >
+            <h3 class="product-title fs-6 fw-semibold text-truncate mb-1" [title]="product.title">
               {{ product.title }}
             </h3>
-            <div
-              class="product-info d-flex flex-row justify-content-between gap-1"
-            >
+            <div class="product-info d-flex flex-row justify-content-between gap-1">
               <p class="product-category text-uppercase text-muted small mb-2">
                 {{ product.category }}
               </p>
@@ -45,9 +54,9 @@
         </mat-card>
       </div>
     } @empty {
-      <div class="col-12 text-center py-5">
-        <!-- <p class="text-muted">Loading exceptional products...</p> -->
-      </div>
+      <!-- <div class="col-12 text-center py-5">
+        <p class="text-muted">No products found in this category.</p>
+      </div> -->
     }
   </div>
 </div>
