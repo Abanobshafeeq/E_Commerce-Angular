@@ -1,5 +1,5 @@
 <div class="container pt-4">
-  <div class="d-flex justify-content-between align-items-center mb-1">
+  <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="fs-3 fw-bold m-0">Products</h1>
     
     <div class="dropdown">
@@ -26,7 +26,7 @@
   <div class="row g-4">
     @for (product of filteredProducts(); track product.id) {
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <mat-card class="product-card h-100 d-flex flex-column justify-content-between border-0 shadow-sm">
+        <mat-card class="product-card h-100 d-flex flex-column justify-content-between border-0 shadow-sm" style="cursor: pointer;" (click)="openProductDetails(product)">
           <div class="image-container d-flex align-items-center justify-content-center p-3">
             <img [src]="product.image" [alt]="product.title" class="product-img" />
           </div>
@@ -46,7 +46,7 @@
           </mat-card-content>
 
           <mat-card-actions class="p-3 pt-0">
-            <button class="btn-primary-custom w-100 py-2 fs-7" (click)="onAddToCart(product)">
+            <button class="btn-primary-custom w-100 py-2 fs-7" (click)="onAddToCart(product, $event)">
               <mat-icon>shopping_cart</mat-icon>
               <span>Add to Cart</span>
             </button>

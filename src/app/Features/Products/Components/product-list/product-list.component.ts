@@ -8,6 +8,9 @@ import { LoaderComponent } from "../../../../core/Shared/components/loader/loade
 import { CartService } from '../../../../core/Shared/services/cart.service';
 import { Product } from '../../models/product.model';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ProductDetailsModalComponent } from '../../../../core/Shared/components/product-details-modal/product-details-modal.component';
+
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -17,7 +20,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     CurrencyPipe,
     MatIcon,
     LoaderComponent,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
@@ -26,6 +30,8 @@ export class ProductListComponent implements OnInit {
   private productService = inject(ProductService);
   private cartService = inject(CartService);
   private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
+
   products = this.productService.products;
   categories: string[] = [];
 
@@ -62,13 +68,24 @@ export class ProductListComponent implements OnInit {
     this.selectedCategory.set(category);
   }
 
-  onAddToCart(product: Product) {
+  onAddToCart(product: Product, event: Event) {
+    event.stopPropagation();
     this.cartService.addToCart(product);
     this.snackBar.open('Item added to cart!', 'Close', {
       duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: ['success-snackbar']
+    });
+  }
+
+  openProductDetails(product: Product) {
+    this.dialog.open(ProductDetailsModalComponent, {
+      data: { product },
+      width: '850px',
+      maxWidth: '95vw',
+      panelClass: 'custom-dialog-container',
+      autoFocus: false
     });
   }
 }

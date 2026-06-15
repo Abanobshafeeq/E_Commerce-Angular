@@ -1,0 +1,43 @@
+<div class="details-modal-container">
+  <div class="modal-header">
+    <button mat-icon-button (click)="closeModal()" class="close-btn">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="image-section">
+      <img [src]="product.image" [alt]="product.title" class="main-image">
+    </div>
+
+    <div class="info-section">
+      <span class="category-badge">{{ product.category }}</span>
+      <h2 class="product-title">{{ product.title }}</h2>
+      <p class="product-price">{{ product.price | currency }}</p>
+      
+      <div class="description-box">
+        <p class="product-description">{{ product.description }}</p>
+      </div>
+
+      <div class="action-section">
+        <div class="quantity-controls">
+          <button mat-icon-button class="qty-btn" (click)="decreaseQuantity()" [disabled]="quantity() === 1">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <span class="qty-value">{{ quantity() }}</span>
+          <button mat-icon-button class="qty-btn" (click)="increaseQuantity()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+            <button class="btn-primary-custom w-100 py-1 fs-5" (click)="addToCart()">
+              <mat-icon>shopping_cart</mat-icon>
+              <span>Add to Cart</span>
+            </button>
+        <!-- <button class="add-to-cart-btn" >
+          <mat-icon>shopping_cart</mat-icon>
+          Add to Cart
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>  
