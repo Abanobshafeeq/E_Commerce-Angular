@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { Product } from '../../../Features/Products/models/product.model';
 
 export interface CartItem {
@@ -15,26 +15,47 @@ export class CartService {
   totalItems = computed(() => {
     return this.cartItems().reduce((total, item) => total + item.quantity, 0);
   });
+
   totalPrice = computed(() => {
-    return this.cartItems().reduce((total, item) => total + item.product.price * item.quantity, 0);
+    return this.cartItems().reduce((total, item) => total + (item.product.price * item.quantity), 0);
   });
- addToCart(product: Product) {
+
+  addToCart(product: Product) {
     this.cartItems.update(items => {
       const existingItem = items.find(item => item.product.id === product.id);
-      let updatedItems;
-
+      
       if (existingItem) {
-        updatedItems = items.map(item =>
+        return items.map(item =>
           item.product.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         );
-      } else {
-        updatedItems = [...items, { product, quantity: 1 }];
       }
-
-      // console.log('Current Cart:', updatedItems);
-      // console.log('Total Items Count:', updatedItems.reduce((acc, curr) => acc + curr.quantity, 0));
-
-      return updatedItems;
+      
+      return [...items, { product, quantity: 1 }];
     });
+  }
+
+  increaseQuantity(productId: any) {
+    this.cartItems.update(items =>
+      items.map(item =>
+        item.product.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  }
+
+  decreaseQuantity(productId: any) {
+    this.cartItems.update(items =>
+      items.map(item =>
+        item.product.id === productId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  }
+
+  removeItem(productId: any) {
+    this.cartItems.update(items => items.filter(item => item.product.id !== productId));
+  }
+  clearCart() {
+    this.cartItems.set([]);
   }
 }

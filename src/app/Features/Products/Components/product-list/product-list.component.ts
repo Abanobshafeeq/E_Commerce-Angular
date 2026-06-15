@@ -7,7 +7,7 @@ import { MatIcon } from "@angular/material/icon";
 import { LoaderComponent } from "../../../../core/Shared/components/loader/loader.component";
 import { CartService } from '../../../../core/Shared/services/cart.service';
 import { Product } from '../../models/product.model';
-
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -16,7 +16,8 @@ import { Product } from '../../models/product.model';
     MatButtonModule,
     CurrencyPipe,
     MatIcon,
-    LoaderComponent
+    LoaderComponent,
+    MatSnackBarModule
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
@@ -24,6 +25,7 @@ import { Product } from '../../models/product.model';
 export class ProductListComponent implements OnInit {
   private productService = inject(ProductService);
   private cartService = inject(CartService);
+  private snackBar = inject(MatSnackBar);
   products = this.productService.products;
   categories: string[] = [];
 
@@ -62,5 +64,11 @@ export class ProductListComponent implements OnInit {
 
   onAddToCart(product: Product) {
     this.cartService.addToCart(product);
+    this.snackBar.open('Item added to cart!', 'Close', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar']
+    });
   }
 }
